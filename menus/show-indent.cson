@@ -13,8 +13,8 @@
       'label': 'show-indent'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'show-indent:toggle'
+          'label': 'Activate'
+          'command': 'show-indent:listen'
         }
       ]
     ]

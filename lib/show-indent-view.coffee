@@ -1,14 +1,14 @@
 module.exports =
 class ShowIndentView
   constructor: (serializeState) ->
-    # Create root element
+    # Create the show-indent div
     @element = document.createElement('div')
     @element.classList.add('show-indent')
 
-    # Create message element
+    # Create the message div
     message = document.createElement('div')
-    message.textContent = "The ShowIndent package is Alive! It's ALIVE!"
     message.classList.add('message')
+
     @element.appendChild(message)
 
   # Returns an object that can be retrieved when package is activated
@@ -20,3 +20,18 @@ class ShowIndentView
 
   getElement: ->
     @element
+
+  updateIndent: ->
+    editor = atom.workspace.getActiveTextEditor()
+    if (editor)
+      softtabs = editor.getSoftTabs()
+      length = editor.getTabLength()
+      @setText(softtabs, length)
+
+  setText: (soft, length) ->
+    # Set the message text
+    if (soft)
+      text = "Spaces: "
+    else
+      text = "Tabs: "
+    @element.children[0].textContent = text + length

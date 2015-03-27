@@ -1,5 +1,6 @@
 # show-indent package
 
-A short description of your package.
+A simple Atom package that displays the tab setting for the current editor window.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+<img src="http://i.imgur.com/vu1KVSq.png" title="source: imgur.com" />
+<img src="http://i.imgur.com/FCojlzM.png" title="source: imgur.com" />

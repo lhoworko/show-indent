@@ -1,16 +1,14 @@
 {
   "name": "show-indent",
   "main": "./lib/show-indent",
-  "version": "0.0.0",
-  "description": "A short description of your package",
+  "version": "0.0.1",
+  "description": "Displays the current files tab setting",
   "activationCommands": {
-    "atom-workspace": "show-indent:toggle"
+    "atom-workspace": "show-indent:listen"
   },
-  "repository": "https://github.com/atom/show-indent",
+  "repository": "https://github.com/lhoworko/show-indent",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
-  },
-  "dependencies": {
   }
 }

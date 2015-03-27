@@ -3,31 +3,31 @@ ShowIndentView = require './show-indent-view'
 
 module.exports = ShowIndent =
   showIndentView: null
-  modalPanel: null
-  subscriptions: null
+  bottomPanel: null
+  observer: null
 
   activate: (state) ->
-    @showIndentView = new ShowIndentView(state.showIndentViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @showIndentView.getElement(), visible: false)
+    statusBar = document.querySelector('status-bar')
 
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
-    @subscriptions = new CompositeDisposable
+    if statusBar?
+      # Create the view and add the new element to the bottom panel.
+      @showIndentView = new ShowIndentView(state.showIndentViewState)
+      @bottomPanel = atom.workspace.addBottomPanel(item: @showIndentView.getElement())
+      # Call updateIndent to set the initial text.
+      @showIndentView.updateIndent()
 
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'show-indent:toggle': => @toggle()
+      @listen()
 
   deactivate: ->
-    @modalPanel.destroy()
-    @subscriptions.dispose()
+    @bottomPanel.destroy()
     @showIndentView.destroy()
+    @observer.dispose()
 
   serialize: ->
     showIndentViewState: @showIndentView.serialize()
 
-  toggle: ->
-    console.log 'ShowIndent was toggled!'
-
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      @modalPanel.show()
+  listen: ->
+    @observer = atom.workspace.observeTextEditors (editor) =>
+      disposable = atom.workspace.onDidChangeActivePaneItem =>
+            @showIndentView.updateIndent()
+      editor.onDidDestroy -> disposable.dispose()
