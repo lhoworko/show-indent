@@ -1,0 +1,16 @@
+{
+  "name": "show-indent",
+  "main": "./lib/show-indent",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "activationCommands": {
+    "atom-workspace": "show-indent:toggle"
+  },
+  "repository": "https://github.com/atom/show-indent",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
